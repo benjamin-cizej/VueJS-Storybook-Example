@@ -1,0 +1,40 @@
+{
+  "name": "materialize",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@storybook/addon-knobs": "^6.0.28",
+    "@storybook/addon-viewport": "^6.0.28",
+    "@storybook/vue": "^6.0.28",
+    "babel-loader": "^8.1.0",
+    "babel-preset-vue": "^2.0.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^7.12.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.2.1",
+    "postcss": "^8.1.4",
+    "postcss-at-rules-variables": "^0.1.10",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-mixins": "^6.2.3",
+    "postcss-nested": "^4.2.3",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-url": "^8.0.0",
+    "storybook": "^6.0.28",
+    "vue-loader": "^15.9.4",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^4.1.0"
+  },
+  "dependencies": {
+    "vue": "^2.6.12"
+  },
+  "scripts": {
+    "storybook": "start-storybook -c ./storybook/.config -p 8086"
+  }
+}
