@@ -1,4 +1,4 @@
-import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { text, boolean, select } from '@storybook/addon-knobs';
 import TextField from './TextField';
 
 export default {
@@ -10,6 +10,15 @@ export const TextFieldStory = () => ({
     TextField,
   },
   props: {
+    type: {
+      default: select('Type', [
+        'text',
+        'number',
+        'email',
+        'tel',
+        'password',
+      ], 'text'),
+    },
     value: {
       default: text('Input', ''),
     },
@@ -20,7 +29,7 @@ export const TextFieldStory = () => ({
       default: text('Suffix', ''),
     },
     id: {
-      default: text('Id', null),
+      default: text('Id', ''),
     },
     readonly: {
       default: boolean('Readonly', false),
@@ -29,11 +38,12 @@ export const TextFieldStory = () => ({
       default: boolean('Disabled', false),
     },
     error: {
-      default: text('Error message', null),
+      default: text('Error message', ''),
     }
   },
   template: `
     <text-field
+      :type="type"
       :value="value"
       :label="label"
       :suffix="suffix"

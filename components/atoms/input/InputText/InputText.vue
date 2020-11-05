@@ -1,12 +1,15 @@
 <template>
   <input
-    type="text"
+    :type="type"
     v-model="internalValue"
     :id="id"
     :name="name"
     :readonly="readonly"
     :disabled="disabled"
-    v-on="$listeners"
+    v-on="{
+      ...$listeners,
+      input: event => $emit('input', event.target.value)
+    }"
   >
 </template>
 
@@ -14,6 +17,10 @@
   export default {
     name: "InputText",
     props: {
+      type: {
+        type: String,
+        default: 'text',
+      },
       value: {
         type: String,
         default: '',

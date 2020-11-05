@@ -1,6 +1,7 @@
 <template>
   <div class="field">
     <input-text
+      :type="type"
       :class="[
         'field__input',
          {'field__input--error': error},
@@ -9,7 +10,6 @@
       v-model="internalValue"
       :readonly="readonly"
       :disabled="disabled"
-      @input="$emit('input', $event)"
       @focusin="onFocusIn"
       @focusout="onFocusOut"
     />
@@ -27,12 +27,15 @@
     />
     <span
       v-if="suffix"
-      class="field__suffix"
+      :class="[
+        'field__suffix',
+        `field__suffix--${type}`,
+      ]"
     >{{ suffix }}</span>
     <input-error
       class="field__error"
-      v-if="error"
-      :message="error"
+      v-if="internalError"
+      :message="internalError"
     />
   </div>
 </template>
@@ -50,6 +53,10 @@
       InputText
     },
     props: {
+      type: {
+        type: String,
+        default: 'text',
+      },
       id: {
         type: String,
         default: null,
@@ -82,6 +89,7 @@
     data() {
       return {
         internalValue: this.value,
+        internalError: this.error,
         focus: false,
       };
     },
@@ -98,7 +106,7 @@
         this.internalValue = val;
       },
       internalValue() {
-        this.error = null;
+        this.internalError = null;
       }
     },
     methods: {
@@ -163,6 +171,11 @@
       position: absolute;
       top: 10px;
       right: 0;
+
+      &--number,
+      &--date {
+        right: 25px;
+      }
     }
 
     &__error {
