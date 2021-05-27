@@ -4,7 +4,7 @@
       :type="type"
       :class="[
         'field__input',
-         {'field__input--error': error},
+         {'field__input--error': internalError},
       ]"
       :id="id"
       v-model="internalValue"
@@ -18,8 +18,8 @@
         'field__label',
         {
           'field__label--active': active,
-          'field__label--focus': focusElement && !error,
-          'field__label--error': error,
+          'field__label--focus': focusElement && !internalError,
+          'field__label--error': internalError,
         },
       ]"
       :for-id="id"
@@ -99,14 +99,17 @@
       },
       focusElement() {
         return this.focus && !this.readonly;
-      }
+      },
     },
     watch: {
       value(val) {
         this.internalValue = val;
       },
       internalValue() {
-        this.internalError = null;
+        this.internalError = '';
+      },
+      error(val) {
+        this.internalError = val;
       }
     },
     methods: {
